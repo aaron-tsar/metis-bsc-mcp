@@ -33,7 +33,7 @@ try {
   });
   values = args.values as CliOptions;
 } catch (err) {
-  console.error('❌ Unrecognized argument. For help, run `bnbchain-mcp --help`.');
+  console.error('❌ Unrecognized argument. For help, run `metis-mcp --help`.');
   process.exit(1);
 }
 

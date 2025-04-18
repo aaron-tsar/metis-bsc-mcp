@@ -1,0 +1,15 @@
+{
+  "metis-mcp": {
+    "command": "node",
+    "args": [
+      "/Users/vuongha/metis-bsc-mcp/build/index.js"
+    ],
+    "env": {
+      "METIS_WALLET_PRIVATE_KEY": "JDJiJDEyJHVOYkJMblJlbWVOQXUwNVpCS2FWVi5R2hz1A5Ryj8/6F3bsZfNxD0IpsTNbT/ySXeYZvF9gT6BmMVYk3rpFsRpWm8DeG8hmjYde0g6r5/AJCwcjWoqH/2ZgD/gWw9xUy5l+QAcnvXrhESxkJNmxv5ANkmfn",
+      "METIS_WALLET_ADDRESS": "0x10C3280aD5b5621a6340ae263B1889615ac4b6D3",
+      "METIS_RPC_URL": "https://sepolia.metisdevops.link"
+    },
+    "disabled": false,
+    "autoApprove": []
+  }
+}

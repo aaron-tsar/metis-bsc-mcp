@@ -1,10 +1,10 @@
 // src/cli/help.ts
 export function printHelp(): void {
     console.log(`
-  📦 BNB Chain MCP CLI
+  📦 METIS MCP CLI
   
   Usage:
-    bnbchain-mcp [options]
+    metis-mcp [options]
   
   Options:
     -i, --init      Initialize configuration
@@ -12,8 +12,8 @@ export function printHelp(): void {
     -h, --help      Show help info
   
   Examples:
-    bnbchain-mcp --init
-    bnbchain-mcp --version
-    bnbchain-mcp
+    metis-mcp --init
+    metis-mcp --version
+    metis-mcp
     `);
 }

@@ -5,7 +5,7 @@ import { getAccount, walletClient } from "../config.js";
 import { buildTxUrl, checkTransactionHash } from "../util.js";
 
 export function registerTransferNativeToken(server: McpServer) {
-  server.tool("Send_BNB", "💎Transfer native token (BNB), Before execution, check the wallet information first", {
+  server.tool("Send_METIS", "💎Transfer native token (METIS), Before execution, check the wallet information first", {
       recipientAddress: z.string(),
       amount: z.string(),
     },

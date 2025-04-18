@@ -19,7 +19,7 @@ export function registerGetWalletInfo(server: McpServer) {
           content: [
             {
               type: "text",
-              text: `Native Balance (BNB): ${balance.nativeBalance}\n\nToken Balances:\n${JSON.stringify(balance.tokenBalances)}\n\nWallet Address: ${address}`,
+              text: `Native Balance (METIS): ${balance.balance}\n\nWallet Address: ${address}`,
             },
           ],
         };

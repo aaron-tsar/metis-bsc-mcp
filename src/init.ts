@@ -27,9 +27,9 @@ const onCancel = () => {
 
 // Show Banner
 const showBanner = () => {
-    const banner = figlet.textSync('BNB Chain MCP ', { font: 'Big' });
+    const banner = figlet.textSync('METIS MCP', { font: 'Big' });
     console.log(yellow(banner));
-    console.log(yellow('🚀 Welcome to the BNB Chain MCP Configurator\n'));
+    console.log(yellow('🚀 Welcome to the METIS MCP Configurator\n'));
 };
 
 // User Input Types
@@ -71,14 +71,14 @@ const getInputs = async (): Promise<UserInputs> => {
         {
             type: 'password',
             name: 'privateKey',
-            message: '🔑 Enter your BNB Chain Wallet Private Key:',
+            message: '🔑 Enter your METIS Wallet Private Key:',
             validate: (val: string) =>
                 val.trim() === '' ? 'Private key is required!' : true,
         },
         {
             type: 'text',
             name: 'rpcUrl',
-            message: '🌐 Enter your BNB Chain RPC URL (optional):',
+            message: '🌐 Enter your METIS RPC URL (optional):',
         },
     ];
 
@@ -88,9 +88,10 @@ const getInputs = async (): Promise<UserInputs> => {
 // Generate .env file
 const generateEnvFile = async (privateKey: string, address: string, rpcUrl?: string, ): Promise<void> => {
     const envContent = `
-BSC_WALLET_PRIVATE_KEY=${privateKey}
-BSC_WALLET_ADDRESS=${address}
-BSC_RPC_URL=${rpcUrl || ''}
+METIS_WALLET_PRIVATE_KEY=${privateKey}
+METIS_WALLET_ADDRESS=${address}
+METIS_RPC_URL=${rpcUrl || ''}
+METIS_CHAIN_ID=59902
 `.trim();
 
     await fs.writeFile('.env', envContent);
@@ -102,13 +103,13 @@ const generateConfig = async (privateKey: string, address: string, rpcUrl?: stri
     const indexPath = path.resolve(__dirname, '..', 'build', 'index.js'); // one level up from cli/
 
     return {
-        'bsc-mcp': {
+        'metis-mcp': {
             command: 'node',
             args: [indexPath],
             env: {
-                BSC_WALLET_PRIVATE_KEY: privateKey,
-                BSC_WALLET_ADDRESS: address,
-                BSC_RPC_URL: rpcUrl || '',
+                METIS_WALLET_PRIVATE_KEY: privateKey,
+                METIS_WALLET_ADDRESS: address,
+                METIS_RPC_URL: rpcUrl || '',
             },
             disabled: false,
             autoApprove: []
@@ -150,7 +151,7 @@ const configureClaude = async (config: object): Promise<boolean> => {
     };
     
     await fs.writeJSON(claudePath, data, { spaces: 2 });
-    console.log(yellow('✅ BNB Chain MCP configured for Claude Desktop. Please RESTART your Claude to enjoy it 🎉'));
+    console.log(yellow('✅ METIS MCP configured for Claude Desktop. Please RESTART your Claude to enjoy it 🎉'));
     return true;
 };
 

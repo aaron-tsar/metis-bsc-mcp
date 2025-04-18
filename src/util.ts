@@ -13,7 +13,7 @@ export function buildTxUrl(txHash: Hex | undefined): string | undefined {
   if (!txHash) {
     return undefined;
   }
-  const txUrl = `https://bscscan.com/tx/${txHash}`;
+  const txUrl = `https://sepolia-explorer.metisdevops.link/tx/${txHash}`;
   return txUrl
 }
 export async function checkTransactionHash(txHash: Hex): Promise<string> {
@@ -23,9 +23,9 @@ export async function checkTransactionHash(txHash: Hex): Promise<string> {
     retryCount: 300,
     retryDelay: 100,
   });
-  const txUrl = `https://bscscan.com/tx/${txHash}`;
+  const txUrl = `https://sepolia-explorer.metisdevops.link/tx/${txHash}`;
   if (txReceipt.status !== "success") {
-    throw new Error(`Please check the transaction results on bscscan, ${txUrl}`);
+    throw new Error(`Please check the transaction results on metis, ${txUrl}`);
   }
   return txUrl;
 }
@@ -70,19 +70,19 @@ export async function getPassword(isRetry?: boolean, num = 0): Promise<InputResu
   }
   const password = passwordResp.value;
 
-  const BSC_WALLET_PRIVATE_KEY = process.env.BSC_WALLET_PRIVATE_KEY as Hex
-  if (!BSC_WALLET_PRIVATE_KEY) {
-    throw new Error("BSC_WALLET_PRIVATE_KEY is not defined");
+  const METIS_WALLET_PRIVATE_KEY = process.env.METIS_WALLET_PRIVATE_KEY as Hex
+  if (!METIS_WALLET_PRIVATE_KEY) {
+    throw new Error("METIS_WALLET_PRIVATE_KEY is not defined");
   }
   try {
 
-    const pk = await decryptPrivateKey(BSC_WALLET_PRIVATE_KEY, password)
+    const pk = await decryptPrivateKey(METIS_WALLET_PRIVATE_KEY, password)
     const account = privateKeyToAccount(
       pk as Hex
     );
-    const address = process.env.BSC_WALLET_ADDRESS
+    const address = process.env.METIS_WALLET_ADDRESS
     if (!address) {
-      throw new Error("BSC_WALLET_ADDRESS is not defined");
+      throw new Error("METIS_WALLET_ADDRESS is not defined");
     }
 
     if (account.address != address) {

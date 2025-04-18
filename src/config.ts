@@ -1,10 +1,10 @@
 import { Hex, http, publicActions, createWalletClient, createPublicClient, PrivateKeyAccount } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { bsc } from "viem/chains";
+import { metisSepolia } from "viem/chains";
 import { getPassword, } from "./util.js";
 import { decryptPrivateKey, } from "./PrivateAES.js";
 
-export const rpcUrl = process.env.BSC_RPC_URL || "https://bsc-dataseed.binance.org";
+export const rpcUrl = process.env.METIS_RPC_URL || "https://sepolia.metisdevops.link";
 
 class ObfuscatedSecureBuffer {
     private buffers: Uint8Array[] = [];
@@ -104,9 +104,9 @@ class ObfuscatedSecureBuffer {
 
 let obfuscatedPrivateKey = new ObfuscatedSecureBuffer();;
 export const getAccount = async () => {
-    const BSC_WALLET_PRIVATE_KEY = process.env.BSC_WALLET_PRIVATE_KEY as Hex
-    if (!BSC_WALLET_PRIVATE_KEY) {
-        throw new Error("BSC_WALLET_PRIVATE_KEY is not defined");
+    const METIS_WALLET_PRIVATE_KEY = process.env.METIS_WALLET_PRIVATE_KEY as Hex
+    if (!METIS_WALLET_PRIVATE_KEY) {
+        throw new Error("METIS_WALLET_PRIVATE_KEY is not defined");
     }
     if (obfuscatedPrivateKey.active()) {
         const pk = obfuscatedPrivateKey.getHexString();
@@ -120,7 +120,7 @@ export const getAccount = async () => {
         throw new Error("You did not enter a password.");
     }
 
-    const pk = await decryptPrivateKey(BSC_WALLET_PRIVATE_KEY, password);
+    const pk = await decryptPrivateKey(METIS_WALLET_PRIVATE_KEY, password);
 
     if (agreed) {
 
@@ -144,7 +144,7 @@ export const getClient = async () => {
     const account = await getAccount()
     const client = createWalletClient({
         account,
-        chain: bsc,
+        chain: metisSepolia,
         transport: http(rpcUrl),
     }).extend(publicActions);
 
@@ -152,12 +152,12 @@ export const getClient = async () => {
 };
 
 export const publicClient = createPublicClient({
-    chain: bsc,
+    chain: metisSepolia,
     transport: http(rpcUrl),
 });
 
 export const walletClient = (account: PrivateKeyAccount) => createWalletClient({
-    chain: bsc,
+    chain: metisSepolia,
     transport: http(rpcUrl),
     account: account,
 });
